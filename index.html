@@ -1,0 +1,99 @@
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width">
+	<title>Spinner</title>
+	<style>
+		.spinner {
+			text-align:center;
+			margin:50px auto;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="spinner"></div>
+	<script>
+		var Spinner = function(conf, container){
+			this.wrap,
+			this.conf;
+			this.create = function(conf, container){
+				this.conf = conf || {
+					"radius": 27,
+					"spokes": 12
+				};
+				var style = document.createElement('style');
+				style.type="text/css"
+				style.innerHTML="@-webkit-keyframes fade { from {opacity: 1;} to {opacity: 0.25;} }";
+				document.getElementsByTagName("head")[0].appendChild(style);
+				this.wrap = document.createElement('div');
+				this.wrap.setAttribute('style',[
+					"position: relative;",
+					"width: "+(this.conf.radius*2)+"px;",
+					"height: "+(this.conf.radius*2)+"px;",
+					"display: inline-block;",
+				].join(''));
+				var deg=0;
+				var sec=0
+				console.log(sec)
+				for ( var i=1;i<=this.conf.spokes;i++ ) {
+					var div = document.createElement('div');
+					div.setAttribute('style',[
+						"width: 12%;",
+						"height: 26%;",
+						"background: #000;",
+						"position: absolute;",
+						"left: 44.5%;",
+						"top: 37%;",
+						"opacity: 0;",
+						"-webkit-animation: fade 1s linear infinite;",
+						"-webkit-border-radius: 50px;",
+						"-webkit-box-shadow: 0 0 3px rgba(0,0,0,0.2);",
+						"-webkit-transform:rotate("+deg+"deg) translate(0, -142%); -webkit-animation-delay: "+sec+"s;"
+					].join(''));
+					this.wrap.appendChild(div);
+					deg = deg + (360/this.conf.spokes);
+					sec = sec + (1/(this.conf.spokes-1));
+					console.log(deg, sec);
+				}
+				container.appendChild(this.wrap);
+			}
+			this.destroy = function(){
+				this.wrap.parentNode.removeChild(this.wrap);
+			}
+		}
+		
+		var reloaded = function(){
+			var then = Date.now(),
+				callback = function(){};		
+			return {
+				init: function(fn){
+					callback = fn;
+					window.webkitRequestAnimationFrame(reloaded.test);
+				},
+				test: function(now){
+					if( now - then > 500 ) {
+						callback.apply(this);
+					} else {
+						then = Date.now();
+						window.webkitRequestAnimationFrame(reloaded.test);
+					}
+				}
+			}
+		}();
+		
+		window.addEventListener('load', function(e){
+			var spinner = new Spinner()
+			spinner.create({
+				"radius": 10,
+				"spokes": 10
+			}, document.querySelector('.spinner'));
+			
+			reloaded.init(function(prefix){
+				spinner.destroy();
+			});
+		});	
+	</script>
+
+</body>
+</html>
