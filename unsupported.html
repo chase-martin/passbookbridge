@@ -17,5 +17,12 @@
 				<p>IOS 6 and supported devices only. <a href="http://www.apple.com/ios/whats-new/#passbook">Learn more</a></p>
 			</div>
 		</div>
+		<script>
+			window.addEventListener("orientationchange", function() {
+				var block = document.querySelector('div.block');
+			  	block.style.height = document.documentElement.clientHeight+"px";
+				block.style.width = document.documentElement.clientWidth+"px";
+			}, false);
+		</script>
     </body>
 </html>

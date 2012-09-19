@@ -20,5 +20,12 @@
 				<p>Apple Store Gift Card in the meantime.</p>
 			</div>
 		</div>
+		<script>
+			window.addEventListener("orientationchange", function() {
+				var block = document.querySelector('div.block');
+			  	block.style.height = document.documentElement.clientHeight+"px";
+				block.style.width = document.documentElement.clientWidth+"px";
+			}, false);
+		</script>
     </body>
 </html>

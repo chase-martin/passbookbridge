@@ -7,6 +7,11 @@ body {
 	color:#505050;
 }
 form { display:none; }
+div.content {
+	display:table;
+	
+	margin:0 auto;
+}
 div.content a {
 	color: #0088cc;
 	text-decoration: none;
@@ -14,21 +19,21 @@ div.content a {
 
 div.content p {
 	margin:0 auto 1em;
-	display:inline-block;
 	text-align:center;
 }
 div.content p.soft { margin-bottom:0; }
 
 div.block {
+	display:table-cell;
+	vertical-align: middle;
 	width:320px;
 	height:356px;
-	display: -webkit-box;
-	-webkit-box-align: center;
-	opacity:0;
-	margin: 0 auto;
 }
 
-.spinner {
+div.error_message div.block { opacity: 1;}
+
+div.spinner {
+	display:block;
 	margin:0 auto;
 	min-width:20px;
 	min-height:20px;
@@ -36,7 +41,8 @@ div.block {
 	padding-top:30px;
 	background: transparent url(img/spinner_40x40.gif) top center no-repeat;
 }
-.passbook-icon {
+div.passbook {
+	display:none;
 	margin:0 auto;
 	min-width:33px;
 	min-height:33.5px;
@@ -45,13 +51,8 @@ div.block {
 	background: transparent url(img/Passbook-Icon.png) top center no-repeat;
 }
 
-div.error_message div.block { opacity: 1;}
-
-div.loading, div.loaded {
+div.spinner, div.passbook {
+	opacity:0;
 	-webkit-transition: opacity .5s;
 }
-div.loaded {
-	-webkit-transition-delay:.5s;
-}
-
 
