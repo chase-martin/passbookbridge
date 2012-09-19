@@ -1,0 +1,57 @@
+body {
+	background: transparent url(img/Passbook-Cover-New.png) top center repeat;
+	margin: 0 auto;
+	font-family: "Lucida Sans Unicode", "Lucida Sans", Lucida, sans-serif;
+	text-align:center;
+	font-size: 14px;
+	color:#505050;
+}
+form { display:none; }
+div.content a {
+	color: #0088cc;
+	text-decoration: none;
+}
+
+div.content p {
+	margin:0 auto 1em;
+	display:inline-block;
+	text-align:center;
+}
+div.content p.soft { margin-bottom:0; }
+
+div.block {
+	width:320px;
+	height:356px;
+	display: -webkit-box;
+	-webkit-box-align: center;
+	opacity:0;
+	margin: 0 auto;
+}
+
+.spinner {
+	margin:0 auto;
+	min-width:20px;
+	min-height:20px;
+	background-size:20px 20px;
+	padding-top:30px;
+	background: transparent url(img/spinner_40x40.gif) top center no-repeat;
+}
+.passbook-icon {
+	margin:0 auto;
+	min-width:33px;
+	min-height:33.5px;
+	background-size:33px 33.5px;
+	padding-top:43px;
+	background: transparent url(img/Passbook-Icon.png) top center no-repeat;
+}
+
+div.error_message div.block { opacity: 1;}
+
+div.loading, div.loaded {
+	-webkit-transition: opacity .5s;
+}
+div.loaded {
+	-webkit-transition-delay:.5s;
+}
+
+

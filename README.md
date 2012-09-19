@@ -1,2 +1,1 @@
-passbookbridge
-==============
+// Passbook URL taken from http://www.ipass.pk (generate a new pk url if this one fails)
