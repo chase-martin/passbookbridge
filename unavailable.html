@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Apple</title>
-        <meta name="HandheldFriendly" content="True">
-        <meta name="MobileOptimized" content="320">
-        <meta name="viewport" content="width=device-width">
-        <meta http-equiv="cleartype" content="on">
+	<head>
+		<meta charset="utf-8">
+		<title>Apple</title>
+		<meta name="HandheldFriendly" content="True">
+		<meta name="MobileOptimized" content="320">
+		<meta name="viewport" content="width=device-width">
 
-        <link rel="stylesheet" href="css/main.css">
-    </head>
-    <body>
+		<link rel="stylesheet" href="css/main_compressed.css">
+
+		<script type="text/javascript">
+			var s_account = "applestoreusmobile,applestoreamrmobile,applestoreusconsummobile,applestorewwmobile";
+		</script>
+		<script type="text/javascript" src="js/omniture_compressed.js"></script>
+		<script type="text/javascript">
+			Omniture.fire({
+				pageName : "storepass - Service Down",
+				prop20 : "AOS: US Consumer Mobile"
+			});
+		</script>
+	</head>
+	<body>
 		<div class="content error_message">
 			<div class="block">
 				<p class="soft">Sorry, this service is currently unavailable.</p>
@@ -20,12 +30,5 @@
 				<p>Apple Store Gift Card in the meantime.</p>
 			</div>
 		</div>
-		<script>
-			window.addEventListener("orientationchange", function() {
-				var block = document.querySelector('div.block');
-			  	block.style.height = document.documentElement.clientHeight+"px";
-				block.style.width = document.documentElement.clientWidth+"px";
-			}, false);
-		</script>
-    </body>
+	</body>
 </html>

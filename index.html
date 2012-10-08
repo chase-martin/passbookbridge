@@ -1,51 +1,40 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Apple</title>
-        <meta name="HandheldFriendly" content="True">
-        <meta name="MobileOptimized" content="320">
-        <meta name="viewport" content="width=device-width">
-        <meta http-equiv="cleartype" content="on">
+	<head>
+		<meta charset="utf-8">
+		<title>Apple</title>
+		<meta name="HandheldFriendly" content="True">
+		<meta name="MobileOptimized" content="320">
+		<meta name="viewport" content="width=device-width">
 
-        <link rel="stylesheet" href="css/main.css">
-		<script>
-		    /* var s_account = "appleglobal,applestoreww,applestoreus,applestoreusconsum,applestoreamr,applestoreamrconsum"; */
-			var s_account="ApplestoreInternalTest";
+		<link rel="stylesheet" href="css/main_compressed.css">
+
+		<script type="text/javascript">
+			var s_account = "applestoreusmobile,applestoreamrmobile,applestoreusconsummobile,applestorewwmobile";
 		</script>
-		<script src="js/bootstrap.js"></script>
-		<script src="js/coherent.js"></script>
-		<script src="js/apple.js"></script>
-		<script src="js/metrics.js"></script>
-		<script>
-			
-			if (typeof (window.s) === "object") {
-				apple.metrics.fireEvent({
-					pageName: " Passbook index"
-				});
-			}
+		<script type="text/javascript" src="js/omniture_compressed.js"></script>
+		<script type="text/javascript">
+			Omniture.init({
+				fire: [{ pageName : "storepass - Pass Generation", prop20 : "AOS: US Consumer Mobile" }],
+				click: ['a.learnmore', {eVar5 : "storepass: Pass Created : Learn More"}]
+			});
+			Omniture.batch({
+			    fire: [{ pageName : "storepass - Pass Created - Learn More", prop20 : "AOS: US Consumer Mobile" }],
+			});
 		</script>
-    </head>
-    <body>
+	</head>
+	<body>
 		<div class="content">
 			<div class="block">
 				<div class="spinner">
 					<p>Your pass is being generated.</p>
 				</div>
 				<div class="passbook">
-					<p><a href="http://www.apple.com/ios/whats-new/#passbook">Learn more</a> about Passbook.</p>
+					<p><a class="learnmore" href="http://www.apple.com/ios/whats-new/#passbook">Learn more</a> about Passbook.</p>
 				</div>
 			</div>
 		</div>
 		<form method="post" action="http://j.mp/PCt8cx"></form>
-		<script>
-			window.addEventListener("orientationchange", function() {
-				var block = document.querySelector('div.block');
-			  	block.style.height = document.documentElement.clientHeight+"px";
-				block.style.width = document.documentElement.clientWidth+"px";
-			}, false);
-		</script>
-		<script src="js/main.js"></script>
-		
-    </body>
+		<script  type="text/javascript" src="js/passbridge_compressed.js"></script>
+	</body>
 </html>
