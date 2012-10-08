@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Apple</title>
-		<meta name="HandheldFriendly" content="True">
-		<meta name="MobileOptimized" content="320">
-		<meta name="viewport" content="width=device-width">
+    <head>
+        <meta charset="utf-8">
+        <title>Apple</title>
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width">
 
-		<link rel="stylesheet" href="css/main_compressed.css">
-		
-		<script type="text/javascript">
-			var s_account = "applestoreusmobile,applestoreamrmobile,applestoreusconsummobile,applestorewwmobile";
-		</script>
-		<script type="text/javascript" src="js/omniture_compressed.js"></script>
-		<script type="text/javascript">
-			Omniture.init({
-				fire: [{pageName : "storepass - Unsupported Device", prop20 : "AOS: US Consumer Mobile"}],
-				click: ['a.learnmore', {eVar5 : "storepass: Unsupported Device : Learn More"}]
-			});
-		</script>
+        <link rel="stylesheet" href="css/main_compressed.css">
+        
+        <script type="text/javascript">
+            var s_account = "applestoreusmobile,applestoreamrmobile,applestoreusconsummobile,applestorewwmobile";
+        </script>
+        <script type="text/javascript" src="js/omniture_compressed.js"></script>
+        <script type="text/javascript">
+            Omniture.init({
+                fire: [{pageName : "storepass - Unsupported Device", prop20 : "AOS: US Consumer Mobile"}],
+                click: ['a.learnmore', {eVar5 : "storepass: Unsupported Device : Learn More"}]
+            });
+        </script>
     </head>
     <body>
-		<div class="content error_message">
-			<div class="block">
-				<p class="soft">Sorry, this device does not support Passbook.</p>
-				<p>IOS 6 and supported devices only. <a class="learnmore" href="http://www.apple.com/ios/whats-new/#passbook">Learn more</a></p>
-			</div>
-		</div>
-		<script>window.addEventListener('DOMContentLoaded',function(){try{if(!navigator.userAgent.match(/iPhone/i)){document.querySelector('div.block').style.height=document.documentElement.clientHeight+"px";}}catch(ex){};},false);</script>
-	</body>
+        <div class="content error_message">
+            <div class="block">
+                <p class="soft">Sorry, this device does not support Passbook.</p>
+                <p>IOS 6 and supported devices only. <a class="learnmore" href="http://www.apple.com/ios/whats-new/#passbook">Learn more</a></p>
+            </div>
+        </div>
+        <script>window.addEventListener('DOMContentLoaded',function(){try{if(!navigator.userAgent.match(/iPhone/i)){document.querySelector('div.block').style.height=document.documentElement.clientHeight+"px";}}catch(ex){};},false);</script>
+    </body>
 </html>
