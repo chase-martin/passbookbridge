@@ -15,22 +15,26 @@
         <script type="text/javascript" src="js/omniture_compressed.js"></script>
         <script type="text/javascript">
             Omniture.init({
-                fire: [{ pageName : "storepass - Pass Generation", prop20 : "AOS: US Consumer Mobile" }],
-                click: ['a.learnmore', {eVar5 : "storepass: Pass Created : Learn More"}]
+                click: ['a.learnmore', {eVar5 : "storepass: Pass Created : Learn More"}],
+				fire: [{ pageName : "storepass - Pass Generation", prop20 : "AOS: US Consumer Mobile" }]
             });
-            Omniture.batch({
-                fire: [{ pageName : "storepass - Pass Created - Learn More", prop20 : "AOS: US Consumer Mobile" }],
+            var passCreated = Omniture.batch({
+                fire: [{ pageName : "storepass - Pass Created - Learn More", prop20 : "AOS: US Consumer Mobile" }]
             });
         </script>
     </head>
     <body>
         <div class="content">
-            <div class="block">
+            <div class="block wide">
                 <div class="spinner">
                     <p>Your pass is being generated.</p>
                 </div>
                 <div class="passbook">
                     <p><a class="learnmore" href="http://www.apple.com/ios/whats-new/#passbook">Learn more</a> about Passbook.</p>
+                </div>
+				<div class="requirements">
+                    <p><a class="learnmore" href="http://www.apple.com/ios/whats-new/#passbook">Learn more</a> about Passbook.</p>
+					<p class="small">Passbook requires iCloud and an iPhone or iPod touch with iOS6 or later.</p>
                 </div>
             </div>
         </div>

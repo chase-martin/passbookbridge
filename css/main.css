@@ -10,9 +10,12 @@ body {
 form { display:none; }
 
 div.content {
-    display:table;
     margin:0 auto;
+    position: absolute;
+    top: 50%;
+    width:100%;
 }
+
 div.content a {
     color: #0088cc;
     text-decoration: none;
@@ -23,15 +26,32 @@ div.content p {
     text-align:center;
 }
 div.content p.soft { margin-bottom:0; }
+div.content p.small {
+    font-size: 11px;
+}
 
 div.block {
-    display:table-cell;
-    vertical-align: middle;
+    margin:-89px auto 0;
     width:320px;
     height:356px;
 }
-
-@media screen and (orientation:landscape) {
+div.block.wide {
+    width:500px;
+}
+@media screen and (max-device-width:480px) {
+    div.content {
+        display:table;
+        position: auto;
+        top: auto;
+        width: auto;
+    }
+    div.block {
+        display:table-cell;
+        vertical-align: middle;
+        margin: 0 auto;
+    }
+}
+@media screen and (max-device-width:480px) and (orientation:landscape) {
     div.block {
         height:139px;
     }
@@ -43,22 +63,34 @@ div.spinner {
     display:block;
     min-width:20px;
     min-height:20px;
-    background-size:20px 20px;
     padding-top:30px;
     background: transparent url(img/spinner_40x40.gif) top center no-repeat;
+    background-size:20px 20px;
 }
-div.passbook {
+div.passbook, div.requirements {
     display:none;
     min-width:33px;
     min-height:33.5px;
-    background-size:33px 33.5px;
     padding-top:43px;
     background: transparent url(img/Passbook-Icon.png) top center no-repeat;
+    background-size:33px 33.5px;
 }
 
-div.spinner, div.passbook {
+div.spinner, div.passbook, div.requirements  {
     margin:0 auto;
     opacity:0;
     -webkit-transition: opacity .5s;
+}
+
+div.fadein, {
+    opacity:1 !important;
+}
+
+div.fadeout {
+    opacity:0 !important;
+}
+
+div.passbook, div.requirements  {
+    display: none;
 }
 

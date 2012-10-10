@@ -2,14 +2,11 @@
 //Compile to omniture_compressed.js with all dependencies prepended
 
 /**
- * Singleton wrapper for Apple Metrics
+ * Wrapper for Apple Metrics
  * Currently supports fire and click omniture events
  */
 var Omniture = function () {
     "use strict";
-    
-    // Saved config parameter to be passed to init from batch()
-    var _batch = null;
     
     /**
      * Wrap all omniture calls here
@@ -35,17 +32,12 @@ var Omniture = function () {
         
         /**
          * Wrapper function for init, allows delayed execution of Omniture.fire events
-         * Use Omniture.batch() with no arguments to call the saved batch.
+         * Use var batchName = Omniture.batch({config}); then batchName.call(); to call the saved batch.
           * Note: Omnicure.click events cannot be delayed easily (without a custom loadEvent etc)
-          * @param delay: {bool} if false, batch is not saved and init will be called immediately
+          * @param config: {json object} json required by init.
          */
-        batch: function (config, delay) {
-            if (delay === false)
-                Omniture.init(config);
-            else if (config === undefined)
-                Omniture.init(_batch);
-            else
-                _batch = config;
+        batch: function (config) {
+            return function() { Omniture.init(config); };
         },
         
         /**
@@ -65,9 +57,13 @@ var Omniture = function () {
         click: function (selector, vars, loadEvent) {
             loadEvent = loadEvent || 'DOMContentLoaded';
             window.addEventListener(loadEvent, function () {
-                document.querySelector(selector).addEventListener('click', function (e) {
-                    Omniture.fire(vars);
-                }, false);
+                var nodes = document.querySelectorAll(selector);
+                for (var i = 0; i < nodes.length; ++i) {
+                    nodes[i].addEventListener('click', function (e) {
+                        Omniture.fire(vars);
+                    }, false);
+                }
+                
             }, false);
         }
     };
