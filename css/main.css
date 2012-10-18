@@ -13,7 +13,9 @@ div.content {
     margin:0 auto;
     position: absolute;
     top: 50%;
+    *left:25%;
     width:100%;
+    *width:50%;
 }
 
 div.content a {
