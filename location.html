@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Apple</title>
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, user-scalable="no">
+
+        <link rel="stylesheet" href="css/main.css">
+
+        <script type="text/javascript">
+            var s_account = "applestoreusmobile,applestoreamrmobile,applestoreusconsummobile,applestorewwmobile";
+        </script>
+        <script type="text/javascript" src="js/omniture_compressed.js"></script>
+        <script type="text/javascript">
+            Omniture.init({
+                click: [
+                        '#createPass', {eVar5 : "storepass: Pass Created : Learn More"},
+                        '#skip', {eVar5 : "storepass: Pass Created : Learn More"}
+                        ],
+                fire: [{ pageName : "storepass - Pass Generation", prop20 : "AOS: US Consumer Mobile" }]
+            });
+            var passCreated = Omniture.batch({
+                fire: [{ pageName : "storepass - Pass Created - Learn More", prop20 : "AOS: US Consumer Mobile" }]
+            });
+        </script>
+  </head>
+<body>
+    <div class="content">
+        <div class="block tall">
+            <form id="locationChooser" method="POST" action="/">
+                <label class="fieldHeading">
+                    <p>Automatically display my pass when I approach an Apple Store with my device turned on.</p>
+                </label>
+                <fieldset class="zipChooser">
+                    <div class="radioWrapper">
+                        <input type="radio" name="zipOrLocation" id="useLocation" value="useLocation" />
+                        <label for="useLocation">
+                            Use My Current Location
+                        </label>
+                        <span class="checked"></span>
+                    </div>
+                    <div class="radioWrapper">
+                        <input type="radio" name="zipOrLocation" id="useZipCode" value="useZipCode" />
+                        <label for="useZipCode" >
+                            Use This Zip Code
+                        </label>
+                        <span class="checked"></span>
+                    </div>
+                    <label for="zipCode" class="hidden">Zip Code</label>
+                    <input type="text" pattern="[0-9]*" maxlength="5" id="zipCode" name="zipCode" class="zipCode" />
+
+                    <!--// Form Error Message: //-->
+                    <div class="error"></div>
+
+                    <input type="hidden" name="formSkipped" value="false" />
+                    <input type="hidden" name="geoTimestamp" value="" />
+                    <input type="hidden" name="geoAccuracy" value="" />
+                    <input type="hidden" name="geoLongitude" value="" />
+                    <input type="hidden" name="geoLatitude" value="" />
+                    <input type="hidden" name="geoError" value="" />
+                </fieldset>
+                <div class="buttonWrapper">
+                    <input type="button" id="skip" value="skip" />
+                    <input class="default" type="submit" id="createPass" value="Create Pass" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/location_compressed.js"></script>
+</body>
+</html>
