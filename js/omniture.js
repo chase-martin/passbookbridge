@@ -57,13 +57,12 @@ var Omniture = function () {
         click: function (selector, vars, loadEvent) {
             loadEvent = loadEvent || 'DOMContentLoaded';
             window.addEventListener(loadEvent, function () {
-                var nodes = document.querySelectorAll(selector);
+                var nodes = (document.querySelectorAll);
                 for (var i = 0; i < nodes.length; ++i) {
                     nodes[i].addEventListener('click', function (e) {
                         Omniture.fire(vars);
                     }, false);
                 }
-                
             }, false);
         }
     };

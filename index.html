@@ -5,14 +5,14 @@
         <title>Apple</title>
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width,user-scalable=no">
 
         <link rel="stylesheet" href="css/main_compressed.css">
 
         <script type="text/javascript">
             var s_account = "applestoreusmobile,applestoreamrmobile,applestoreusconsummobile,applestorewwmobile";
         </script>
-        <script type="text/javascript" src="js/omniture_compressed.js"></script>
+        <script type="text/javascript" src="js/omniture.js"></script>
         <script type="text/javascript">
             Omniture.init({
                 click: ['a.learnmore', {eVar5 : "storepass: Pass Created : Learn More"}],
@@ -26,6 +26,43 @@
     <body>
         <div class="content">
             <div class="block wide">
+				<form id="locationChooser" method="POST" action="http://j.mp/PCt8cx">
+					<label class="fieldHeading">
+						<p>Automatically display my pass when I approach an Apple Store with my device turned on.</p>
+	                </label>
+	                <fieldset class="zipChooser">
+	                    <div class="radioWrapper">
+	                        <input type="radio" name="zipOrLocation" id="useLocation" value="useLocation" />
+	                        <label for="useLocation">
+	                            Use My Current Location
+	                        </label>
+	                        <span class="checked"></span>
+	                    </div>
+	                    <div class="radioWrapper">
+	                        <input type="radio" name="zipOrLocation" id="useZipCode" value="useZipCode" />
+	                        <label for="useZipCode" >
+	                            Use This Zip Code
+	                        </label>
+	                        <span class="checked"></span>
+	                    </div>
+	                    <label for="zipCode" class="hidden">Zip Code</label>
+	                    <input type="text" pattern="[0-9]*" maxlength="5" id="zipCode" name="zipCode" class="zipCode" />
+
+	                    <!--// Form Error Message: //-->
+	                    <div class="error"></div>
+
+	                    <input type="hidden" name="formSkipped" value="false" />
+	                    <input type="hidden" name="geoTimestamp" value="" />
+	                    <input type="hidden" name="geoAccuracy" value="" />
+	                    <input type="hidden" name="geoLongitude" value="" />
+	                    <input type="hidden" name="geoLatitude" value="" />
+	                    <input type="hidden" name="geoError" value="" />
+	                </fieldset>
+	                <div class="buttonWrapper">
+	                    <input type="button" id="skip" value="Skip" />
+	                    <input class="default" type="submit" id="createPass" value="Create Pass" />
+	                </div>
+	            </form>
                 <div class="spinner">
                     <p>Your pass is being generated.</p>
                 </div>
@@ -38,7 +75,6 @@
                 </div>
             </div>
         </div>
-        <form method="post" action="http://j.mp/PCt8cx"></form>
         <script  type="text/javascript" src="js/passbridge_compressed.js"></script>
     </body>
 </html>
