@@ -214,14 +214,8 @@ div.spinner {
 div.passbook, div.requirements {
     display:none;
     min-width:33px;
-    min-height:33.5px;
-    padding-top:43px;
-    background: transparent url(img/Passbook-Icon.png) top center no-repeat;
-    background-size:33px 33.5px;
+    padding-top:0;
 }
-/* remove passbook icon but allow keep the old CSS */
-div.passbook, div.requirements {background:none; background-size:0;min-height:auto;padding-top:0;}
-
 div.spinner, div.passbook, div.requirements  {
     margin:0 auto;
     opacity:0;
