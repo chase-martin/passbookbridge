@@ -49,7 +49,7 @@ var Omniture = function () {
         },
         
         /**
-         * Setup a click event to call apple metrics fireEvent onclick
+         * Setup a click event listener to call apple metrics fireEvent
          * @param selector: {string} selector for click element
          * @param vars: {json} parameters required by apple metrics 
          * @param loadEvent: {string} Typically 'load' or 'DOMContentLoaded' 
@@ -57,7 +57,7 @@ var Omniture = function () {
         click: function (selector, vars, loadEvent) {
             loadEvent = loadEvent || 'DOMContentLoaded';
             window.addEventListener(loadEvent, function () {
-                var nodes = (document.querySelectorAll);
+                var nodes = document.querySelectorAll(selector);
                 for (var i = 0; i < nodes.length; ++i) {
                     nodes[i].addEventListener('click', function (e) {
                         Omniture.fire(vars);

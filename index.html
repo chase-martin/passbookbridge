@@ -12,11 +12,11 @@
         <script type="text/javascript">
             var s_account = "applestoreusmobile,applestoreamrmobile,applestoreusconsummobile,applestorewwmobile";
         </script>
-        <script type="text/javascript" src="js/omniture.js"></script>
+        <script type="text/javascript" src="js/omniture_compressed.js"></script>
         <script type="text/javascript">
             Omniture.init({
                 click: ['a.learnmore', {eVar5 : "storepass: Pass Created : Learn More"}],
-				fire: [{ pageName : "storepass - Pass Generation", prop20 : "AOS: US Consumer Mobile" }]
+                fire: [{ pageName : "storepass - Pass Generation", prop20 : "AOS: US Consumer Mobile" }]
             });
             var passCreated = Omniture.batch({
                 fire: [{ pageName : "storepass - Pass Created - Learn More", prop20 : "AOS: US Consumer Mobile" }]
@@ -26,52 +26,54 @@
     <body>
         <div class="content">
             <div class="block wide">
-				<form id="locationChooser" method="POST" action="http://j.mp/PCt8cx">
-					<label class="fieldHeading">
-						<p>Automatically display my pass when I approach an Apple Store with my device turned on.</p>
-	                </label>
-	                <fieldset class="zipChooser">
-	                    <div class="radioWrapper">
-	                        <input type="radio" name="zipOrLocation" id="useLocation" value="useLocation" />
-	                        <label for="useLocation">
-	                            Use My Current Location
-	                        </label>
-	                        <span class="checked"></span>
-	                    </div>
-	                    <div class="radioWrapper">
-	                        <input type="radio" name="zipOrLocation" id="useZipCode" value="useZipCode" />
-	                        <label for="useZipCode" >
-	                            Use This Zip Code
-	                        </label>
-	                        <span class="checked"></span>
-	                    </div>
-	                    <label for="zipCode" class="hidden">Zip Code</label>
-	                    <input type="text" pattern="[0-9]*" maxlength="5" id="zipCode" name="zipCode" class="zipCode" />
+                <form id="locationChooser" method="POST" action="http://j.mp/PCt8cx">
+                    <label class="fieldHeading">
+                        Automatically display my pass when I approach an Apple Store with my device turned on.
+                    </label>
+                    <fieldset class="zipChooser">
+                        <div class="radioWrapper">
+                            <input type="radio" name="location.choose" id="location.choose_loc" value="location.choose_loc" checked="checked" />
+                            <label for="location.choose_loc">
+                                Use My Current Location
+                            </label>
+                            <span class="checked"></span>
+                        </div>
+                        <div class="radioWrapper">
+                            <input type="radio" name="location.choose" id="location.choose_zip" value="location.choose_zip" />
+                            <label for="location.choose_zip" >
+                                Use This Zip Code
+                            </label>
+                            <span class="checked"></span>
+                        </div>
+                        <label for="location.zipcode" class="hidden">Zip Code</label>
+                        <input type="text" pattern="[0-9]*" maxlength="5" id="location.zipcode" class="zipCode" />
 
-	                    <!--// Form Error Message: //-->
-	                    <div class="error"></div>
+                        <!--// Form Error Message: //-->
+                        <div class="error"></div>
 
-	                    <input type="hidden" name="formSkipped" value="false" />
-	                    <input type="hidden" name="geoTimestamp" value="" />
-	                    <input type="hidden" name="geoAccuracy" value="" />
-	                    <input type="hidden" name="geoLongitude" value="" />
-	                    <input type="hidden" name="geoLatitude" value="" />
-	                    <input type="hidden" name="geoError" value="" />
-	                </fieldset>
-	                <div class="buttonWrapper">
-	                    <input type="button" id="skip" value="Skip" />
-	                    <input class="default" type="submit" id="createPass" value="Create Pass" />
-	                </div>
-	            </form>
+                        <input type="hidden" class="skipped" name="location.skipped" value="false" />
+                        <input type="hidden" name="location.timestamp" value="" />
+                        <input type="hidden" name="location.accuracy" value="" />
+                        <input type="hidden" name="location.longitude" value="" />
+                        <input type="hidden" name="location.latitude" value="" />
+                        <input type="hidden" name="location.error" value="" />
+                    </fieldset>
+                    <div class="buttonWrapper">
+                        <label for="location.skip" class="hidden">Skip geolocation form</label>
+                        <input type="button" id="location.skip" value="Skip" />
+                        <label for="location.create" class="hidden">Submit geolocation form</label>
+                        <input class="default" type="submit" id="location.create" class="createPass" value="Create Pass" />
+                    </div>
+                </form>
                 <div class="spinner">
                     <p>Your pass is being generated.</p>
                 </div>
                 <div class="passbook">
                     <p><a class="learnmore" href="http://www.apple.com/ios/whats-new/#passbook">Learn more</a> about Passbook.</p>
                 </div>
-				<div class="requirements">
+                <div class="requirements">
                     <p><a class="learnmore" href="http://www.apple.com/ios/whats-new/#passbook">Learn more</a> about Passbook.</p>
-					<p class="small">Passbook requires iCloud and an iPhone or iPod touch with iOS6 or later.</p>
+                    <p class="small">Passbook requires iCloud and an iPhone or iPod touch with iOS6 or later.</p>
                 </div>
             </div>
         </div>
