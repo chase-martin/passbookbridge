@@ -71,7 +71,7 @@ var passbridge = function(){
      */
     function passbookRAF(){
         // Begin polling for passbook overlay (iOS mobile safari only)
-        window.webkitRequestAnimationFrame(function(now){console.log(now-then);
+        window.webkitRequestAnimationFrame(function(now){
             if( then !== undefined && now - then > 300 ) {
                 // It is safe to allow scrolling again
                 window.removeEventListener('touchmove', preventScrolling, true);
@@ -135,22 +135,22 @@ var passbridge = function(){
      * requires location.zipcode input field in e.target.form
      */
     function validateZip(e){
-        var tmp = e.target.form["location.zipcode"].value;
-        e.target.form["location.zipcode"].value = tmp.replace(/[^0-9]/g,"");
+        var tmp = e.target.form['location.zipcode'].value;
+        e.target.form['location.zipcode'].value = tmp.replace(/[^0-9]/g,"");
     };
     
     /**
      * Wrap the onload event and call the appropriate loading method
      */
-    return window.addEventListener('load', function(e) {
+    return window.addEventListener('DOMContentLoaded', function(e) {
         // Add event listeners for passbook location form
         for(var i = 0,
             n = ['location.zipcode','location.zipcode','location.choose_loc','location.skip','location.create'], // DOM nodes
             e = ['focus','blur','change','click','click'], // events
             f = [ // event handlers
                 function (e) { // location.zipcode_focus: on focusing zip field, select correct radio 
-                    e.target.form["location.choose_zip"].checked = true;
-                    e.target.form["location.choose_loc"].checked = false;
+                    e.target.form['location.choose_zip'].checked = true;
+                    e.target.form['location.choose_loc'].checked = false;
                     // digits only in zipcode
                     window.addEventListener('keyup', validateZip, false);
                 },
@@ -158,13 +158,21 @@ var passbridge = function(){
                     window.removeEventListener('keyup',validateZip);
                 },
                 function (e) { // location.choose_loc_change: on deselecting zip option, empty field
-                    e.target.form["location.zipcode"].value = '';
+                    e.target.form['location.zipcode'].value = '';
+                    document.getElementById('errors').innerHTML = '';
                 },
                 function (e) { // skip_click: skip button clicked
                     // prevent multiple submits
-                    e.target.form["location.skip"].disabled = 'disabled';
-                    e.target.form["location.create"].disabled = 'disabled';
-                    e.target.form["location.skipped"].value = 'true';
+                    e.target.form['location.skip'].disabled = 'disabled';
+                    e.target.form['location.create'].disabled = 'disabled';
+                    // Clear relevant form elements on skip
+                    for(var i in e.target.form.elements) {
+                        if( e.target.form.elements[i].dataset 
+                            && e.target.form.elements[i].dataset.clearOnSkip == 'true' ) {
+                                e.target.form.elements[i].value = '';
+                        }
+                    }
+                    e.target.form['location.skipped'].value = 'true';
                     // Show loading message
                     loading(e.target.form);
                 },
@@ -173,23 +181,23 @@ var passbridge = function(){
                     // save form for geo callbacks
                     var thisForm = e.target.form;
                     // prevent multiple submits
-                    thisForm["location.create"].disabled = 'disabled';
-                    thisForm["location.skip"].disabled = 'disabled';
+                    thisForm['location.create'].disabled = 'disabled';
+                    thisForm['location.skip'].disabled = 'disabled';
                     // get geolocation, callbacks passed inline
-                    if(thisForm["location.choose_loc"].checked) { 
+                    if(thisForm['location.choose_loc'].checked) { 
                         navigator.geolocation.getCurrentPosition(
                             function useLocationGeo(position) { // geolocation success callback
                                 // Add geo data to form fields
-                                thisForm["location.timestamp"].value = position.timestamp;
-                                thisForm["location.accuracy"].value = position.coords.accuracy;
-                                thisForm["location.latitude"].value = position.coords.latitude;
-                                thisForm["location.longitude"].value = position.coords.longitude;
+                                thisForm['location.timestamp'].value = position.timestamp;
+                                thisForm['location.accuracy'].value = position.coords.accuracy;
+                                thisForm['location.latitude'].value = position.coords.latitude;
+                                thisForm['location.longitude'].value = position.coords.longitude;
                                 // Show loading message
                                 loading();
                             },
                             function geoError(ex) { // geolocation error callback
                                 // pass geo error to form field
-                                thisForm["location.error"] = ex;
+                                thisForm['location.error'] = ex;
                                 // Show loading message
                                 loading();
                             }
