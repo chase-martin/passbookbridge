@@ -46,23 +46,26 @@
                             <span class="checked"></span>
                         </div>
                         <label for="location.zipcode" class="hidden">Zip Code</label>
-                        <input type="text" pattern="[0-9]*" maxlength="5" id="location.zipcode" class="zipCode" />
+                        <input type="text" pattern="[0-9]*" maxlength="5" id="location.zipcode" class="zipCode" data-clear-on-skip="true" />
 
                         <!--// Form Error Message: //-->
-                        <div class="error"></div>
+                        <div id="errors" class="error">
+							<input type="hidden" name="location.zipCodeIsInvalidOnServer" value="false" />
+							<input type="hidden" name="location.invalidzip" value="Invalide Zip Code" readonly="readonly" data-show-error="false" />
+                        </div>
 
                         <input type="hidden" class="skipped" name="location.skipped" value="false" />
-                        <input type="hidden" name="location.timestamp" value="" />
-                        <input type="hidden" name="location.accuracy" value="" />
-                        <input type="hidden" name="location.longitude" value="" />
-                        <input type="hidden" name="location.latitude" value="" />
-                        <input type="hidden" name="location.error" value="" />
+                        <input type="hidden" name="location.timestamp" value="" data-clear-on-skip="true" />
+                        <input type="hidden" name="location.accuracy" value="" data-clear-on-skip="true" />
+                        <input type="hidden" name="location.longitude" value="" data-clear-on-skip="true" />
+                        <input type="hidden" name="location.latitude" value="" data-clear-on-skip="true" />
+                        <input type="hidden" name="location.error" value="" data-clear-on-skip="true" />
                     </fieldset>
                     <div class="buttonWrapper">
                         <label for="location.skip" class="hidden">Skip geolocation form</label>
                         <input type="button" id="location.skip" value="Skip" />
                         <label for="location.create" class="hidden">Submit geolocation form</label>
-                        <input class="default" type="submit" id="location.create" class="createPass" value="Create Pass" />
+                        <input type="submit" id="location.create" class="createPass" value="Create Pass" />
                     </div>
                 </form>
                 <div class="spinner">
