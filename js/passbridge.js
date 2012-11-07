@@ -229,7 +229,7 @@ var passbridge = function(){
          }
          thisForm['location.skipped'].value = 'true';
          // Show loading message
-         loading(thisForm);
+         loading();
      }
      
     /**
