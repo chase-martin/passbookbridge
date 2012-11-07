@@ -137,32 +137,52 @@ var passbridge = function(){
      * requires location.zipcode input field in thisForm
      */
     function validateZip(e){
-        var zipfield = thisForm['location.zipcode'];
-        thisForm['location.zipcode'].value = zipfield.value.replace(/[^0-9]/g,'');
-        if (thisForm['location.zipcode'].value.length > 5) {
-            thisForm['location.invalidzip'].type='text';
-            thisForm['location.invalidzip'].dataset.showError = 'true';
-            fade(thisForm['location.invalidzip'], 1);
+        if (!isNumeric(thisForm['location.zipcode'])) {
+            showFormError(thisForm['location.invalidzip']);
+        } else if (thisForm['location.zipcode'].value.length > 5) {
+            showFormError(thisForm['location.invalidzip']);
         } else if (thisForm['location.zipcode'].value.length == 5) {
             if (thisForm['location.invalidzip'].type != 'hidden') {
-                hideFormError('location.invalidzip');
+                hideFormError(thisForm['location.invalidzip']);
             }
         } else if ( thisForm['location.zipcode'].value.length < 5
                     && thisForm['location.invalidzip'].dataset.showError == 'true') {
-            thisForm['location.invalidzip'].type='text';
-            fade(thisForm['location.invalidzip'], 1);
+            showFormError(thisForm['location.invalidzip']);
         }
     };
     
     /**
-     * Hide for error using fade (form errors are type=hidden per request)
+     * Show or hide form error using fade (form errors are type=hidden per request)
      * wrapper for fade which provides a quicker fade out effect
      */
-    function hideFormError(selector){
-        fade(thisForm[selector], 0);
+    function hideFormError(formElem){
+        fade(formElem, 0);
         // Useing settimeout instead of fade callback for quick fadeout
-        setTimeout(function(){thisForm[selector].type='hidden';},100);
+        setTimeout(function(){formElem.type='hidden';},100);
     }
+    
+    /**
+     * Show form error using fade (form errors are type=hidden per request)
+     * wrapper for fade which provides a quicker fade out effect
+     */
+    function showFormError(selector){
+        if(thisForm['location.invalidzip'].dataset.showError != 'true')
+            thisForm['location.invalidzip'].dataset.showError = 'true';
+        thisForm['location.invalidzip'].type='text';
+        fade(thisForm['location.invalidzip'], 1);
+    }
+    
+    /**
+     * Check for numerical-only values in a string
+     */
+     function isNumeric(str){
+         // match for anything but a number
+          var chars = str.value.match(/[^0-9]+/);
+          if (chars !== null )
+            return false;
+          else
+            return true;
+     }
     
     // Event Handlers for Passbook form
     
@@ -189,7 +209,7 @@ var passbridge = function(){
      function choose_loc_change(e) {
          thisForm['location.invalidzip'].dataset.showError = 'false';
          thisForm['location.zipcode'].value = '';
-         hideFormError('location.invalidzip');
+         hideFormError(thisform['location.invalidzip']);
      }
      
     /**
@@ -218,9 +238,9 @@ var passbridge = function(){
      function create_click(e) {
          e.preventDefault();
          // Zipcode could be too short at this point, validate.
-         var notnum = thisForm['location.zipcode'].value.match(/[^0-9]+/);
          if( thisForm['location.choose_zip'].checked == true
-             && thisForm['location.zipcode'].value.length != 5 || notnum != null) {
+             && thisForm['location.zipcode'].value.length != 5
+             || !isNumeric(thisForm['location.zipcode'])) {
              thisForm['location.invalidzip'].dataset.showError = 'true';
              thisForm['location.invalidzip'].type='text';
              fade(thisForm['location.invalidzip'], 1);
